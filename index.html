@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-do List</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./index.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="title">Todo List</h1>
+    </header>
+    <main class="main">
+      <section class="todo-section" id="todo-section"></section>
+      <form action="#" class="form" id="form" onsubmit="return getData()">
+        <label for="todo" class="form-todo">
+          <input
+            autocomplete="off"
+            type="text"
+            id="todo-input"
+            name="todo"
+            class="form-input todo-input"
+            placeholder="Todo"
+          />
+        </label>
+        <label for="button" class="form-button">
+          <input
+            type="button"
+            value="Submit"
+            id="button-input"
+            name="button"
+            class="form-input button-input"
+          />
+        </label>
+      </form>
+    </main>
+  </body>
+</html>
