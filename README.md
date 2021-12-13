@@ -1,2 +1,2 @@
 # todo-list
-A todo-list made with javascipt vanilla
+A todo-list made with vanilla javascript
