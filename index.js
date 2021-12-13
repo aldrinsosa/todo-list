@@ -17,6 +17,7 @@ function getData(){
     todoContent.push(todo);
     localStorage.setItem('todos', JSON.stringify(todoContent));
     createDiv(todo);
+    todoInput.value = '';
     return(false);
   }
 };
