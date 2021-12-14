@@ -26,36 +26,23 @@ function createDiv(todo){
   const div = document.createElement('div');
   div.className = 'todo-div';
   element.appendChild(div);
-  div.id = `div${element.children.length}`;
-  createP(div.id, todo);
-  createButton(div.id);
+  index = element.children.length;
+  div.id = `div${index}`;
+  div.innerHTML = `<p class="todo-text">${todo}</p>
+  <input type="button" class="button" value="x" id="button${index}" ></input>`;
+  addListener(div);
 }
 
-function createP(divId, todo){
-  const div = document.getElementById(divId);
-  const p = document.createElement('p');
-  const text = document.createTextNode(todo);
-  p.className = 'todo-text';
-  p.appendChild(text);
-  div.appendChild(p);
-}
-
-function createButton(divId){
-  const div = document.getElementById(divId);
-  const button = document.createElement('input')
-  button.type = 'button';
-  button.value = 'x';
-  button.className = 'button';
-  button.id = divId.replace('div', 'button');
-  div.appendChild(button);
+function addListener(div){
+  const childs = div.childNodes;
+  const button = childs[2];
   button.addEventListener('click', clickButton);
 }
 
-
 function clickButton(e){
   const idButton = e.target.id;
+  const index = idButton.replace('button', '');
   const idDiv = idButton.replace('button', 'div');
-  const index = idDiv.replace('div', '');
   rmvDiv(idDiv, index);
   actIndexButton(index);
 }
@@ -76,10 +63,11 @@ function chargeTodos(){
 }
 
 function actIndexDiv(index){
+  indexInt = parseInt(index);
   divs = document.querySelectorAll('.todo-div');
   divs.forEach(div => {
-    indexDiv = div.id.replace('div', '');
-    if (indexDiv > index){
+    indexDiv = parseInt(div.id.replace('div', ''));
+    if (indexDiv > indexInt){
       div.id = `div${indexDiv - 1}`;
     }
     else{
@@ -89,10 +77,11 @@ function actIndexDiv(index){
 }
 
 function actIndexButton(index){
+  indexInt = parseInt(index);
   buttons = document.querySelectorAll('.button');
   buttons.forEach(button => {
-    indexButton = button.id.replace('button', '');
-    if(indexButton > index){
+    indexButton = parseInt(button.id.replace('button', ''));
+    if(indexButton > indexInt){
       button.id = `button${indexButton - 1}`;
     }
     else{
