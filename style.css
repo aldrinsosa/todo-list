@@ -12,7 +12,7 @@
 
 html {
   font-size: 62.5%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 
 body {
@@ -88,7 +88,6 @@ body {
   color: var(--blue);
   background: none;
   border: none;
-  margin-right: 1.5rem;
   width: 5vh;
   height: 5vh;
   font-size: 2rem;
@@ -102,6 +101,7 @@ body {
   color: var(--blue);
   border-radius: 4px;
   font-weight: bold;
+  font-family: inherit;
 }
 
 .form-input::placeholder {
@@ -123,4 +123,9 @@ body {
 
 .button-input:hover {
   background: var(--orange);
+}
+
+.buttons-div {
+  display: flex;
+  justify-content: space-between;
 }
