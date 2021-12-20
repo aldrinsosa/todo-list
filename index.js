@@ -17,7 +17,6 @@ document.onload = chargeTodos();
 button.addEventListener('click', getData);
 form.addEventListener('submit', getData)
 
-
 //get todo from the input
 function getData(e){
   e.preventDefault();
@@ -88,6 +87,13 @@ function addListener(div){
 
 //event to delete the div
 function clickButton(e){
+
+  if(edit){
+    edit = false;
+    button.value = 'Submit';
+    todoInput.value = '';
+  }
+
   //check if is the icon
   if(e.target.className == 'fas fa-times'){
     //get the button
