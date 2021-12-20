@@ -90,32 +90,20 @@ function addListener(div){
 function clickButton(e){
   //check if is the icon
   if(e.target.className == 'fas fa-times'){
-    //get the button
-    const button = e.target.parentNode;
-
     //get the id
-    const idButton = button.id;
-    const index = idButton.replace('button', '');
-    const idDiv = idButton.replace('button', 'div');
-
-    //remove the div and update the index of the buttons
-    rmvDiv(idDiv, index);
-    actIndexButton(index);
-    actIndexEdit(index);
+    var idButton = e.target.parentNode.id;
   } 
-  //check if is the button
   else{
-
     //get the id
-    const idButton = e.target.id;
-    const index = idButton.replace('button', '');
-    const idDiv = idButton.replace('button', 'div');
-
-    //remove the div and update the index of the buttons
-    rmvDiv(idDiv, index);
-    actIndexButton(index);
-    actIndexEdit(index);
+    var idButton = e.target.id;
   } 
+  const index = idButton.replace('button', '');
+  const idDiv = idButton.replace('button', 'div');
+
+  //remove the div and update the index of the buttons
+  rmvDiv(idDiv, index);
+  actIndexButton(index);
+  actIndexEdit(index);
 }
 
 //event to edit the div
@@ -126,26 +114,17 @@ function clickEdit(e){
 
   //check if is the icon
   if(e.target.className == 'fas fa-edit'){
-    
-    //get the button
-    const button = e.target.parentNode;
-
     //get the id
-    const idButton = button.id;
-    const index = idButton.replace('edit', '');
-
-    //edit the div
-    editTodo(index);
+    var idButton = e.target.parentNode.id;
   } 
   else{
-
     //get the id
-    const idButton = e.target.id;
-    const index = idButton.replace('edit', '');
-
-    //edit the div
-    editTodo(index);
+    var idButton = e.target.id;
   } 
+  const index = idButton.replace('edit', '');
+
+  //edit the div
+  editTodo(index);
 }
 
 //remove the div
