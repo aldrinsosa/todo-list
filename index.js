@@ -64,9 +64,10 @@ function createDiv(todo){
   //html of a div
   div.innerHTML = `<p class="todo-text" id="p${index}">${todo}</p>
   <div class="buttons-div">
-  <button type="submit" class="button editButton" id="edit${index}" ><i class="fas fa-edit"></i></button>
   <button type="submit" class="button deleteButton" id="button${index}" ><i class="fas fa-times"></i></button>
   </div>`;
+
+//<button type="submit" class="button editButton" id="edit${index}" ><i class="fas fa-edit"></i></button>
 
   //listen for clicks in the buttons
   addListener(div);
@@ -77,12 +78,12 @@ function addListener(div){
 
   //get the buttons from the div
   const childs = div.childNodes[2].childNodes;
-  const button = childs[3];
-  const edit = childs[1];
+  const button = childs[1];
+  //const edit = childs[1];
 
   //add event listener
   button.addEventListener('click', clickButton);
-  edit.addEventListener('click', clickEdit);
+  //edit.addEventListener('click', clickEdit);
 }
 
 //event to delete the div
