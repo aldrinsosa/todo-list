@@ -261,7 +261,7 @@ function actIndexButton(index){
       return;
     }
   });
-}
+} 
 
 //uptade the id for the edit buttons 
 function actIndexEdit(index){
@@ -287,3 +287,4 @@ function actIndexEdit(index){
     }
   });
 }
+
