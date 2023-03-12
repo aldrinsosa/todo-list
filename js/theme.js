@@ -2,22 +2,24 @@
 let root = document.documentElement;
 let themeButton = document.getElementById("themeButton");
 
-//declares the colors
-let blue = "#14213d";
-let grey = "#e5e5e5";
+//declare the colors
+let blueLight = "#14213d";
+let greyLight = "#e5e5e5";
+let blueDark = "#101A2E";
+let greyDark = "#4C6088";
 
 // listen to clicks
 themeButton.addEventListener("click", () => {
   //checks the actual theme in the class of the button
   if (themeButton.className === "lightTheme themeButton") {
     //changes css variables
-    root.style.setProperty("--blue", grey);
-    root.style.setProperty("--grey", blue);
+    root.style.setProperty("--blue", blueDark);
+    root.style.setProperty("--grey", greyDark);
     //change tha class
     themeButton.className = "darkTheme themeButton";
   } else {
-    root.style.setProperty("--blue", blue);
-    root.style.setProperty("--grey", grey);
+    root.style.setProperty("--blue", blueLight);
+    root.style.setProperty("--grey", greyLight);
     themeButton.className = "lightTheme themeButton";
   }
 });
