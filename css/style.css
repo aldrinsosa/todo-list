@@ -1,6 +1,5 @@
 :root {
   --blue: #14213d;
-  --orange: #f6bd60;
   --grey: #e5e5e5;
 }
 
@@ -67,7 +66,7 @@ body {
   max-width: 56.8rem;
   min-height: 10vh;
   height: auto;
-  background-color: var(--orange);
+  background-color: var(--grey);
   border: var(--blue) 3px solid;
   border-radius: 4px;
   margin: 0 auto;
@@ -122,7 +121,8 @@ body {
 }
 
 .button-input:hover {
-  background: var(--orange);
+  background: var(--blue);
+  color: var(--grey);
 }
 
 .buttons-div {
