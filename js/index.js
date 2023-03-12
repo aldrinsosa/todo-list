@@ -21,7 +21,7 @@ function getData(e) {
     return false;
   } else {
     //gets an unique id
-    const id = Math.random().toString(16).slice(2);
+    const id = Date.now();
     //puts the todo in the localstorage
     localStorage.setItem(id, todo); //to do
     //creates the todo
@@ -98,9 +98,11 @@ function chargeTodos() {
   if (localStorage.length !== 0) {
     //transforms the localstorage into an object
     localstorage = JSON.parse(JSON.stringify(localStorage));
+    //Sorts the data with the date
+    let localstorageSorted = Object.entries(localStorage).sort();
     //creates an todo for each one
-    for (var i in localstorage) {
-      createTodo(localstorage[i], [i]);
+    for (var i in localstorageSorted) {
+      createTodo(localstorageSorted[i][1], localstorageSorted[i][0]);
     }
   }
 }
