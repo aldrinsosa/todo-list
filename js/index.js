@@ -55,26 +55,46 @@ function createTodo(todo, id) {
   const deleteButton = childs[3];
 
   //Makes each button listen for clicks
+  editButton.addEventListener("click", (e) => {
+    clickEvent(e, "edit");
+  });
+
   deleteButton.addEventListener("click", (e) => {
-    deleteEvent(e);
+    clickEvent(e, "delete");
   });
 }
 
 //event to delete the div
-function deleteEvent(e) {
+function clickEvent(e, event) {
   //checks if the the icon or the button was clicked
-  if (e.target.className == "fas fa-times") {
+  if (
+    e.target.className == "fas fa-times" ||
+    e.target.className == "fas fa-edit"
+  ) {
     //gets the id of the button
     var idButton = e.target.parentNode.id;
   } else {
     //gets the id of the button
     var idButton = e.target.id;
   }
-  //cleans the id to get the index of the todo
-  const index = idButton.replace("delete", "");
 
-  //removes the todo
-  deleteTodo(index);
+  if (event === "edit") {
+    //cleans the id to get the index of the todo
+    const index = idButton.replace("edit", "");
+
+    //removes the todo
+    editTodo(index);
+  } else {
+    //cleans the id to get the index of the todo
+    const index = idButton.replace("delete", "");
+
+    //removes the todo
+    deleteTodo(index);
+  }
+}
+
+function editTodo(index) {
+  console.log(index);
 }
 
 //removes the todo
