@@ -1,12 +1,12 @@
 //obtains the elements from the html
 const todoInput = document.getElementById("todo-input");
-const button = document.getElementById("button-input");
+const submitButton = document.getElementById("button-input");
 const element = document.getElementById("todo-section");
 const form = document.getElementById("form");
 
 //charges the todos and listen for submits
 document.onload = chargeTodos();
-button.addEventListener("click", getData);
+submitButton.addEventListener("click", getData);
 form.addEventListener("submit", getData);
 
 //gets the input from the textbox
@@ -45,26 +45,23 @@ function createTodo(todo, id) {
   //html of the div
   div.innerHTML = `<p class="todo-text" id="paragraph${id}">${todo}</p>
   <div class="buttons-div">
-  <button type="submit" class="button deleteButton" id="button${id}" ><i class="fas fa-times"></i></button>
+  <button type="submit" class="button editButton" id="edit${id}" ><i class="fas fa-edit"></i></button>
+  <button type="submit" class="button deleteButton" id="delete${id}" ><i class="fas fa-times"></i></button>
   </div>`;
 
-  /*
-  html for the edit button 
-  //<button type="submit" class="button editButton" id="edit${index}" ><i class="fas fa-edit"></i></button> 
-  */
-
-  //Gets the button
+  //Gets the buttons
   const childs = div.childNodes[2].childNodes;
-  const button = childs[1];
+  const editButton = childs[1];
+  const deleteButton = childs[3];
 
   //Makes each button listen for clicks
-  button.addEventListener("click", (e) => {
-    deleteButton(e);
+  deleteButton.addEventListener("click", (e) => {
+    deleteEvent(e);
   });
 }
 
 //event to delete the div
-function deleteButton(e) {
+function deleteEvent(e) {
   //checks if the the icon or the button was clicked
   if (e.target.className == "fas fa-times") {
     //gets the id of the button
@@ -74,7 +71,7 @@ function deleteButton(e) {
     var idButton = e.target.id;
   }
   //cleans the id to get the index of the todo
-  const index = idButton.replace("button", "");
+  const index = idButton.replace("delete", "");
 
   //removes the todo
   deleteTodo(index);
