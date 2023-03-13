@@ -69,7 +69,7 @@ function clickEvent(e, event) {
   //checks if the the icon or the button was clicked
   if (
     e.target.className == "fa-solid fa-trash" ||
-    e.target.className == "fa-solid fa-pen" || e.target.className == "fa-solid fa-circle-check"
+    e.target.className == "fa-solid fa-pen" || e.target.className == "fa-solid fa-circle-check" || e.target.className == "fa-solid fa-circle-xmark"
   ) {
     //gets the id of the button
     var idButton = e.target.parentNode.id;
@@ -94,31 +94,57 @@ function clickEvent(e, event) {
 }
 
 function editTodo(index){
-  const input = document.getElementById(`div${index}`).childNodes[0];
-  const icon = document.getElementById(`div${index}`).childNodes[2].childNodes[1].childNodes[0];
-  if (icon.className == "fa-solid fa-pen"){
-    icon.className = "fa-solid fa-circle-check";
+  //gets the div
+  const div = document.querySelector(`#div${index}`);
+  //gets the input and the icons
+  const input = div.childNodes[0];
+  const editIcon = div.childNodes[2].childNodes[1].childNodes[0];
+  const deleteIcon = div.childNodes[2].childNodes[3].childNodes[0];
+
+  //saves the input in case the user cancel the edit
+  localStorage.setItem("cache", input.value);
+
+  //checks if is editing or confirming the edit
+  if (editIcon.className == "fa-solid fa-pen"){
+    //changes the icons
+    editIcon.className = "fa-solid fa-circle-check";
+    deleteIcon.className = "fa-solid fa-circle-xmark";
+    //makes the input editable
     input.removeAttribute("readonly");
     input.focus();
   } else{
-    icon.className = "fa-solid fa-pen";
+    //changes the icons
+    editIcon.className = "fa-solid fa-pen";
+    deleteIcon.className = "fa-solid fa-trash";
+    //makes the input not editable
     input.setAttribute("readonly", true);
+    //saves the change in the local storage
     localStorage.setItem(index, input.value);
-  }
-  //circle x mark for the cancel button
-  //<i class="fa-solid fa-circle-xmark"></i>
+  };
 }
 
 //removes the todo
 function deleteTodo(index) {
   //gets the div
   const div = document.querySelector(`#div${index}`);
+  //gets the input and the icons
+  const input = div.childNodes[0];
+  const editIcon = div.childNodes[2].childNodes[1].childNodes[0];
+  const deleteIcon = div.childNodes[2].childNodes[3].childNodes[0];
 
-  //removes the div
-  element.removeChild(div);
-
-  //removes the todo in the localstorage
-  localStorage.removeItem(index);
+  //check if is deleting or canceling
+  if(deleteIcon.className == "fa-solid fa-trash"){
+    //removes the div
+    element.removeChild(div);
+    //removes the todo in the localstorage
+    localStorage.removeItem(index);
+  }else{
+    //sets the value as the one in the cache
+    input.value = localStorage.getItem("cache");
+    //changes the icons
+    editIcon.className = "fa-solid fa-pen";
+    deleteIcon.className = "fa-solid fa-trash";
+  };
 }
 
 //creates the todos in the localstorage
@@ -131,7 +157,7 @@ function chargeTodos() {
     let localstorageSorted = Object.entries(localStorage).sort();
     //creates an todo for each one and checks if is the theme key
     for (var i in localstorageSorted) {
-      if(localstorageSorted[i][0] == "theme"){
+      if(localstorageSorted[i][0] == "theme" || localstorageSorted[i][0] == "cache"){
         return false;
       }
       else{
