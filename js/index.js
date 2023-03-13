@@ -45,8 +45,8 @@ function createTodo(todo, id) {
   //html of the div
   div.innerHTML = `<input type="text" readonly id="paragraph${id}" value ="${todo}" class="todo-text">
   <div class="buttons-div">
-  <button type="submit" class="button editButton" id="edit${id}" ><i class="fas fa-edit"></i></button>
-  <button type="submit" class="button deleteButton" id="delete${id}" ><i class="fas fa-times"></i></button>
+  <button type="submit" class="button editButton" id="edit${id}" ><i class="fa-solid fa-pen"></i></button>
+  <button type="submit" class="button deleteButton" id="delete${id}" ><i class="fa-solid fa-trash"></i></button>
   </div>`;
 
   //Gets the buttons
@@ -68,8 +68,8 @@ function createTodo(todo, id) {
 function clickEvent(e, event) {
   //checks if the the icon or the button was clicked
   if (
-    e.target.className == "fas fa-times" ||
-    e.target.className == "fas fa-edit" || e.target.className == "fa-solid fa-check"
+    e.target.className == "fa-solid fa-trash" ||
+    e.target.className == "fa-solid fa-pen" || e.target.className == "fa-solid fa-circle-check"
   ) {
     //gets the id of the button
     var idButton = e.target.parentNode.id;
@@ -96,17 +96,17 @@ function clickEvent(e, event) {
 function editTodo(index){
   const input = document.getElementById(`div${index}`).childNodes[0];
   const icon = document.getElementById(`div${index}`).childNodes[2].childNodes[1].childNodes[0];
-  if (icon.className == "fas fa-edit"){
-    icon.className = "fa-solid fa-check";
+  if (icon.className == "fa-solid fa-pen"){
+    icon.className = "fa-solid fa-circle-check";
     input.removeAttribute("readonly");
     input.focus();
   } else{
-    icon.className = "fas fa-edit";
+    icon.className = "fa-solid fa-pen";
     input.setAttribute("readonly", true);
     localStorage.setItem(index, input.value);
   }
-  //<i class="fa-solid fa-check"></i>
-  //fas fa-edit
+  //circle x mark for the cancel button
+  //<i class="fa-solid fa-circle-xmark"></i>
 }
 
 //removes the todo
