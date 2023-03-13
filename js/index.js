@@ -69,7 +69,7 @@ function clickEvent(e, event) {
   //checks if the the icon or the button was clicked
   if (
     e.target.className == "fas fa-times" ||
-    e.target.className == "fas fa-edit"
+    e.target.className == "fas fa-edit" || e.target.className == "fa-solid fa-check"
   ) {
     //gets the id of the button
     var idButton = e.target.parentNode.id;
@@ -94,7 +94,19 @@ function clickEvent(e, event) {
 }
 
 function editTodo(index){
-  //todo
+  const input = document.getElementById(`div${index}`).childNodes[0];
+  const icon = document.getElementById(`div${index}`).childNodes[2].childNodes[1].childNodes[0];
+  if (icon.className == "fas fa-edit"){
+    icon.className = "fa-solid fa-check";
+    input.removeAttribute("readonly");
+    input.focus();
+  } else{
+    icon.className = "fas fa-edit";
+    input.setAttribute("readonly", true);
+    localStorage.setItem(index, input.value);
+  }
+  //<i class="fa-solid fa-check"></i>
+  //fas fa-edit
 }
 
 //removes the todo
