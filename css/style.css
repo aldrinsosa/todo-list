@@ -40,7 +40,7 @@ body {
   margin-right: 3.6rem;
 }
 .themeButton > a {
-  font-size: 2.25rem;
+  font-size: 3rem;
   color: var(--grey);
 }
 
@@ -74,7 +74,7 @@ body {
   margin-top: 2rem;
   padding-bottom: 2rem;
   min-width: 28rem;
-  width: 70vw;
+  width: 95vw;
   max-width: 56.8rem;
 }
 
@@ -82,14 +82,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80vw;
+  width: 95vw;
   min-width: 28rem;
   max-width: 56.8rem;
   min-height: 11vh;
   height: auto;
   background-color: var(--grey);
-  border: var(--blue) 3px solid;
-  border-radius: 12px;
+  border: var(--blue) 4px solid;
+  border-radius: 24px;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -121,11 +121,10 @@ body {
 
 .form-input {
   background: none;
-  border: var(--blue) solid 3px;
+  border: var(--blue) solid 4px;
   color: var(--blue);
-  border-radius: 4px;
+  border-radius: 24px;
   font-weight: bold;
-  font-family: inherit;
   outline: none;
   height:11vh;
   font-family: 'Work Sans';
