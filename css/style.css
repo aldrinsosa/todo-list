@@ -19,22 +19,25 @@ body {
 }
 
 .header {
+  border-radius: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 98.5%;
   min-width: 32rem;
-  height: 7vh;
+  height: 11vh;
+  margin: 0.55vh auto 0rem auto;
   background-color: var(--blue);
 }
 
 .title {
   color: var(--grey);
-  margin-left: 3rem;
+  margin-left: 3.6rem;
+  font-size:3rem;
 }
 
 .themeButton{
-  margin-right: 3rem;
+  margin-right: 3.6rem;
 }
 .themeButton > a {
   font-size: 2.25rem;
@@ -54,7 +57,12 @@ body {
   min-width: 32rem;
   width: 100%;
 }
-
+.todo-section{
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  padding-top: 2rem;
+}
 .todos {
   width: 100%;
   height: auto;
@@ -74,23 +82,24 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 70vw;
+  width: 80vw;
   min-width: 28rem;
   max-width: 56.8rem;
-  min-height: 10vh;
+  min-height: 11vh;
   height: auto;
   background-color: var(--grey);
   border: var(--blue) 3px solid;
-  border-radius: 4px;
+  border-radius: 12px;
   margin: 0 auto;
-  margin-top: 2rem;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .todo-text {
+  font-family: 'Work Sans';
   color: var(--blue);
   font-size: 1.5rem;
-  margin-left: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
   font-weight: bold;
   width: 100%;
   word-wrap: break-word;
@@ -118,6 +127,8 @@ body {
   font-weight: bold;
   font-family: inherit;
   outline: none;
+  height:11vh;
+  font-family: 'Work Sans';
 }
 
 .form-input::placeholder {
