@@ -1,6 +1,7 @@
 :root {
   --blue: #14213d;
   --grey: #e5e5e5;
+  --red: #BF3838;
 }
 
 * {
@@ -155,4 +156,17 @@ body {
 .buttons-div {
   display: flex;
   justify-content: space-between;
+}
+
+.deleteButton{
+  margin-left: 1rem;
+}
+
+.deleteButton:hover{
+  color: var(--red); 
+}
+
+.editButton:hover{
+  color: #4F884C;
+  size: 2rem;
 }
