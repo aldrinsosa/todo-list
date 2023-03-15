@@ -11,9 +11,19 @@ const confirmIconClasses = "fa-solid fa-circle-check";
 const cancelIconClasses = "fa-solid fa-circle-xmark";
 
 //charges the todos and listen for submits
-document.onload = chargeTodos();
+window.onload = chargeTodos();
 submitButton.addEventListener("click", getData);
 form.addEventListener("submit", getData);
+
+//fix the size of the todos error
+setTimeout(() => {
+  //iterates every div and assigns its corresponding size
+  let divs = document.querySelectorAll('.todo-div') 
+  divs.forEach((div) => {
+    let input = div.querySelector(".todo-text")
+    changeLines(input);
+  });
+}, 100);
 
 function getData(e) {
   e.preventDefault();
@@ -63,7 +73,7 @@ function createTodo(index,todo) {
 
   //assigns the rows for the textarea 
   changeLines(input);
-
+  
   editButton.addEventListener("click", (e) => {
     clickEvent(e, "edit");
   });

@@ -24,6 +24,11 @@ body::-webkit-scrollbar {
   width: 0px;
 }
 
+.todo-text::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0px;
+}
+
 .header {
   border-radius: 24px;
   display: flex;
@@ -163,6 +168,7 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: space-around;
   min-width: 8rem;
+  min-height: 20px;
 }
 
 .deleteButton{
