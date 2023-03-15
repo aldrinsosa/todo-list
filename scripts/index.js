@@ -101,7 +101,15 @@ function clickEvent(e, event) {
     //cleans the id to get the index of the todo
     const index = idButton.replace("delete", "");
 
-    deleteTodo(index);
+    //gets the icon
+    const deleteIcon = document.querySelector(`#delete${index}`).childNodes[0];
+
+    //depending on the icon delete the todo or cancel the edit 
+    if (deleteIcon.className == deleteIconClasses){
+      deleteTodo(index);
+    }else{
+      cancelEdit(index, deleteIcon)
+    }
   }
 }
 
@@ -164,28 +172,30 @@ function saveChanges(editIcon,deleteIcon,input,index){
   localStorage.setItem(index, input.value);
 }
 
-function deleteTodo(index) {
-
-  //gets the div, the input and the icons
-  const div = document.querySelector(`#div${index}`);
+function cancelEdit(index, deleteIcon){
+  //gets the input and the icon
   const input = document.querySelector(`#text${index}`);
   const editIcon = document.querySelector(`#edit${index}`).childNodes[0];
-  const deleteIcon = document.querySelector(`#delete${index}`).childNodes[0];
+  
+  //set the cache values to the textarea
+  input.value = localStorage.getItem("cacheText");
+  input.rows = localStorage.getItem("cacheRows");
 
-  //check if is deleting or canceling the edit
-  if(deleteIcon.className == deleteIconClasses){
-    //removes the div
-    element.removeChild(div);
-    //removes the todo in the localstorage
-    localStorage.removeItem(index);
-  }else{
-    //sets the value and the size of the text area as the ones in the cache
-    input.value = localStorage.getItem("cacheText");
-    input.rows = localStorage.getItem("cacheRows");
-    //changes the icons
-    editIcon.className = editIconClasses;
-    deleteIcon.className = deleteIconClasses;
-  };
+  //changes the icons
+  editIcon.className = editIconClasses;
+  deleteIcon.className = deleteIconClasses;
+
+}
+
+function deleteTodo(index) {
+  //gets the div
+  const div = document.querySelector(`#div${index}`);
+
+  //removes the div
+  element.removeChild(div);
+
+  //removes the todo in the localstorage
+  localStorage.removeItem(index);
 }
 
 //creates the todos in the localstorage
