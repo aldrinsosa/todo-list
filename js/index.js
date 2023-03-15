@@ -43,14 +43,18 @@ function createTodo(todo, id) {
   div.id = `div${id}`;
 
   //html of the div
-  div.innerHTML = `<input type="text" readonly id="paragraph${id}" value ="${todo}" class="todo-text">
+  div.innerHTML = `
+  <textarea readonly class="todo-text" id="paragraph${id}" cols="30" rows="1">${todo}</textarea>
   <div class="buttons-div">
   <button type="submit" class="button editButton" id="edit${id}" ><i class="fa-solid fa-pen"></i></button>
   <button type="submit" class="button deleteButton" id="delete${id}" ><i class="fa-solid fa-trash"></i></button>
   </div>`;
 
+  //<input type="text" readonly id="paragraph${id}" value ="${todo}" class="todo-text">
+  //<textarea readonly class="todo-text" id="paragraph${id}" cols="30" rows="1">${todo}</textarea>
+  
   //Gets the buttons
-  const childs = div.childNodes[2].childNodes;
+  const childs = div.childNodes[3].childNodes;
   const editButton = childs[1];
   const deleteButton = childs[3];
 
@@ -97,9 +101,9 @@ function editTodo(index){
   //gets the div
   const div = document.querySelector(`#div${index}`);
   //gets the input and the icons
-  const input = div.childNodes[0];
-  const editIcon = div.childNodes[2].childNodes[1].childNodes[0];
-  const deleteIcon = div.childNodes[2].childNodes[3].childNodes[0];
+  const input = div.childNodes[1];
+  const editIcon = div.childNodes[3].childNodes[1].childNodes[0];
+  const deleteIcon = div.childNodes[3].childNodes[3].childNodes[0];
 
   //saves the input in case the user cancel the edit
   localStorage.setItem("cache", input.value);

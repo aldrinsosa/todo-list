@@ -107,6 +107,7 @@ body {
   background-color: var(--grey);
   border: none;
   outline: none;
+  resize: none;
 }
 
 .button {
