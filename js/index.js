@@ -73,16 +73,17 @@ function createTodo(todo, index) {
 
 //event to delete the div
 function clickEvent(e, event) {
+  let idButton;
   //checks if the the icon or the button was clicked
   if (
     e.target.className == "fa-solid fa-trash" ||
     e.target.className == "fa-solid fa-pen" || e.target.className == "fa-solid fa-circle-check" || e.target.className == "fa-solid fa-circle-xmark"
   ) {
     //gets the id of the button
-    var idButton = e.target.parentNode.id;
+    idButton = e.target.parentNode.id;
   } else {
     //gets the id of the button
-    var idButton = e.target.id;
+    idButton = e.target.id;
   }
 
   if (event === "edit") {
@@ -107,7 +108,8 @@ function editTodo(index){
   const deleteIcon = document.querySelector(`#delete${index}`).childNodes[0];
 
   //saves the input in case the user cancel the edit
-  localStorage.setItem("cache", input.value);
+  localStorage.setItem("cacheText", input.value);
+  localStorage.setItem("cacheRows", input.rows);
 
   //checks if is editing or confirming the edit
   if (editIcon.className == "fa-solid fa-pen"){
@@ -117,12 +119,21 @@ function editTodo(index){
     //makes the input editable
     input.removeAttribute("readonly");
     input.focus();
+    //listen if the textarea needs to be bigger
+    input.addEventListener("keydown", ()=>{
+      if(input.scrollHeight%18 == 0){
+        input.rows = input.scrollHeight/18;
+      };
+    })
   } else{
     //changes the icons
     editIcon.className = "fa-solid fa-pen";
     deleteIcon.className = "fa-solid fa-trash";
     //makes the input not editable
     input.setAttribute("readonly", true);
+    if(input.scrollHeight%18 == 0){
+      input.rows = input.scrollHeight/18;
+    };
     //saves the change in the local storage
     localStorage.setItem(index, input.value);
   };
@@ -144,7 +155,8 @@ function deleteTodo(index) {
     localStorage.removeItem(index);
   }else{
     //sets the value as the one in the cache
-    input.value = localStorage.getItem("cache");
+    input.value = localStorage.getItem("cacheText");
+    input.rows = localStorage.getItem("cacheRows");
     //changes the icons
     editIcon.className = "fa-solid fa-pen";
     deleteIcon.className = "fa-solid fa-trash";
@@ -160,8 +172,8 @@ function chargeTodos() {
     //Sorts the data with the date
     let localstorageSorted = Object.entries(localStorage).sort();
     //creates an todo for each one and checks if is the theme key
-    for (var i in localstorageSorted) {
-      if(localstorageSorted[i][0] == "theme" || localstorageSorted[i][0] == "cache"){
+    for (let i in localstorageSorted) {
+      if(localstorageSorted[i][0] == "theme" || localstorageSorted[i][0] == "cacheText"|| localstorageSorted[i][0] == "cacheRows"){
         return false;
       }
       else{
