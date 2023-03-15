@@ -58,9 +58,7 @@ function createTodo(todo, index) {
   const editButton = document.querySelector(`#edit${index}`);
   const deleteButton = document.querySelector(`#delete${index}`);
 
-  if(input.scrollHeight%18 == 0){
-    input.rows = input.scrollHeight/18;
-  };
+  changeLines(input);
   //Makes each button listen for clicks
   editButton.addEventListener("click", (e) => {
     clickEvent(e, "edit");
@@ -121,9 +119,7 @@ function editTodo(index){
     input.focus();
     //listen if the textarea needs to be bigger
     input.addEventListener("keydown", ()=>{
-      if(input.scrollHeight%18 == 0){
-        input.rows = input.scrollHeight/18;
-      };
+      changeLines(input);
     })
   } else{
     //changes the icons
@@ -131,9 +127,7 @@ function editTodo(index){
     deleteIcon.className = "fa-solid fa-trash";
     //makes the input not editable
     input.setAttribute("readonly", true);
-    if(input.scrollHeight%18 == 0){
-      input.rows = input.scrollHeight/18;
-    };
+    changeLines(input);
     //saves the change in the local storage
     localStorage.setItem(index, input.value);
   };
@@ -181,4 +175,12 @@ function chargeTodos() {
       }
     }
   }
+}
+
+function changeLines(input){
+  if(input.scrollHeight%18 == 0 || input.scrollHeight%18 == 1){
+    input.rows = input.scrollHeight/18;
+  }else if (input.scrollHeight%18 == 17){
+    input.rows = (input.scrollHeight/18) + 1;
+  };
 }
