@@ -32,7 +32,7 @@ function getData(e) {
       localStorage.setItem(index, todo);
 
       //creates the todo
-      createTodo(todo, index);
+      createTodo(index,todo);
 
       //empties the input and focuses it
       todoInput.value = "";
@@ -40,7 +40,7 @@ function getData(e) {
   }
 }
 
-function createTodo(todo, index) {
+function createTodo(index,todo) {
 
   //creates element and assign it
   const div = document.createElement("div");
@@ -131,7 +131,7 @@ function editTodo(index){
 
     input.addEventListener("keydown", (e)=>{
       //if shift enter is pressed continues
-      if(e.shiftKey && e.key == "Enter"){
+      if(e.shiftKey){
       } 
       //if just enter is pressed save the changes
       else if(e.key == "Enter"){
@@ -195,7 +195,7 @@ function chargeTodos() {
     //transforms the localstorage into an object
     localstorage = JSON.parse(JSON.stringify(localStorage));
 
-    //Sorts the data with the date of creaction
+    //Sorts the data with the date of creation
     let localstorageSorted = Object.entries(localStorage).sort();
 
     //creates an todo for each one 
@@ -204,7 +204,7 @@ function chargeTodos() {
       if(localstorageSorted[i][0] == "theme" || localstorageSorted[i][0] == "cacheText"|| localstorageSorted[i][0] == "cacheRows"){
       }
       else{
-        createTodo(localstorageSorted[i][1], localstorageSorted[i][0]);
+        createTodo(localstorageSorted[i][0], localstorageSorted[i][1]);
       }
     }
   }
