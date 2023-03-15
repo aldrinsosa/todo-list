@@ -1,8 +1,8 @@
 //obtains the elements from the html
-const todoInput = document.getElementById("todo-input");
-const submitButton = document.getElementById("button-input");
-const element = document.getElementById("todo-section");
-const form = document.getElementById("form");
+const todoInput = document.querySelector("#todo-input");
+const submitButton = document.querySelector("#button-input");
+const element = document.querySelector("#todo-section");
+const form = document.querySelector("#form");
 
 //charges the todos and listen for submits
 document.onload = chargeTodos();
@@ -21,11 +21,11 @@ function getData(e) {
     return false;
   } else {
       //gets an unique id
-      const id = Date.now();
+      const index = Date.now();
       //puts the todo in the localstorage
-      localStorage.setItem(id, todo); //to do
+      localStorage.setItem(index, todo); //to do
       //creates the todo
-      createTodo(todo, id);
+      createTodo(todo, index);
       //empties the input
       todoInput.value = "";
       return false;
@@ -33,21 +33,21 @@ function getData(e) {
 }
 
 //creates the html for the todo
-function createTodo(todo, id) {
+function createTodo(todo, index) {
   //creates element and assign it
   const div = document.createElement("div");
   div.className = "todo-div";
   element.appendChild(div);
 
   //assigns the index to the div
-  div.id = `div${id}`;
+  div.id = `div${index}`;
 
   //html of the div
   div.innerHTML = `
-  <textarea readonly class="todo-text" id="paragraph${id}" cols="30" rows="1">${todo}</textarea>
+  <textarea readonly class="todo-text" id="paragraph${index}" cols="30" rows="1">${todo}</textarea>
   <div class="buttons-div">
-  <button type="submit" class="button editButton" id="edit${id}" ><i class="fa-solid fa-pen"></i></button>
-  <button type="submit" class="button deleteButton" id="delete${id}" ><i class="fa-solid fa-trash"></i></button>
+  <button type="submit" class="button editButton" id="edit${index}" ><i class="fa-solid fa-pen"></i></button>
+  <button type="submit" class="button deleteButton" id="delete${index}" ><i class="fa-solid fa-trash"></i></button>
   </div>`;
 
   //<input type="text" readonly id="paragraph${id}" value ="${todo}" class="todo-text">
@@ -98,12 +98,10 @@ function clickEvent(e, event) {
 }
 
 function editTodo(index){
-  //gets the div
-  const div = document.querySelector(`#div${index}`);
   //gets the input and the icons
-  const input = div.childNodes[1];
-  const editIcon = div.childNodes[3].childNodes[1].childNodes[0];
-  const deleteIcon = div.childNodes[3].childNodes[3].childNodes[0];
+  const input = document.querySelector(`#paragraph${index}`);
+  const editIcon = document.querySelector(`#edit${index}`).childNodes[0];
+  const deleteIcon = document.querySelector(`#delete${index}`).childNodes[0];
 
   //saves the input in case the user cancel the edit
   localStorage.setItem("cache", input.value);
@@ -131,10 +129,9 @@ function editTodo(index){
 function deleteTodo(index) {
   //gets the div
   const div = document.querySelector(`#div${index}`);
-  //gets the input and the icons
-  const input = div.childNodes[0];
-  const editIcon = div.childNodes[2].childNodes[1].childNodes[0];
-  const deleteIcon = div.childNodes[2].childNodes[3].childNodes[0];
+  const input = document.querySelector(`#paragraph${index}`);
+  const editIcon = document.querySelector(`#edit${index}`).childNodes[0];
+  const deleteIcon = document.querySelector(`#delete${index}`).childNodes[0];
 
   //check if is deleting or canceling
   if(deleteIcon.className == "fa-solid fa-trash"){
