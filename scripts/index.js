@@ -121,9 +121,9 @@ function editTodo(index){
     input.addEventListener("keydown", ()=>{
       changeLines(input);
     })
-    input.addEventListener("keyup", ()=>{
-      changeLines(input);
-    })
+    //input.addEventListener("keyup", ()=>{
+    //  changeLines(input);
+   // })
   } else{
     //changes the icons
     editIcon.className = "fa-solid fa-pen";
