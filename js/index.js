@@ -54,10 +54,13 @@ function createTodo(todo, index) {
   //<textarea readonly class="todo-text" id="paragraph${id}" cols="30" rows="1">${todo}</textarea>
   
   //Gets the buttons
-  const childs = div.childNodes[3].childNodes;
-  const editButton = childs[1];
-  const deleteButton = childs[3];
+  const input = document.querySelector(`#paragraph${index}`);
+  const editButton = document.querySelector(`#edit${index}`);
+  const deleteButton = document.querySelector(`#delete${index}`);
 
+  if(input.scrollHeight%18 == 0){
+    input.rows = input.scrollHeight/18;
+  };
   //Makes each button listen for clicks
   editButton.addEventListener("click", (e) => {
     clickEvent(e, "edit");
