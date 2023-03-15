@@ -32,6 +32,7 @@ body::-webkit-scrollbar {
   width: 98.5%;
   min-width: 32rem;
   height: 11vh;
+  min-height: 69.73px;
   margin: 0.55vh auto 0rem auto;
   background-color: var(--blue);
 }
@@ -91,7 +92,7 @@ body::-webkit-scrollbar {
   width: 95vw;
   min-width: 28rem;
   max-width: 56.8rem;
-  min-height: 11vh;
+  min-height: 69.73px;
   height: auto;
   background-color: var(--grey);
   border: var(--blue) 4px solid;
@@ -134,6 +135,7 @@ body::-webkit-scrollbar {
   font-weight: bold;
   outline: none;
   height:11vh;
+  min-height: 69.73px;
   font-family: 'Work Sans';
 }
 
@@ -161,7 +163,8 @@ body::-webkit-scrollbar {
 
 .buttons-div {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  min-width: 8rem;
 }
 
 .deleteButton{
