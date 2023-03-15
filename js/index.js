@@ -121,6 +121,9 @@ function editTodo(index){
     input.addEventListener("keydown", ()=>{
       changeLines(input);
     })
+    input.addEventListener("keyup", ()=>{
+      changeLines(input);
+    })
   } else{
     //changes the icons
     editIcon.className = "fa-solid fa-pen";
@@ -178,17 +181,7 @@ function chargeTodos() {
 }
 
 function changeLines(input){
-/*
-  si el tamaño del textarea es 18(tamaño promedio de una linea), un divisor de este (ej:36) o el resultado de la division es 1.4 para abajo (ej:26) entonces la cantidad de lineas es el resultado de dividirlo para 18, si el resultado de la division es mayor a 1.5 entoces se redondea 
-
-  if(input.scrollHeight%18 == 0 || input.scrollHeight%18 <= 8){
-    input.rows = input.scrollHeight/18;
-  }else if (input.scrollHeight%18 >= 9){
-    input.rows = (input.scrollHeight/18) + 1;
-  };
-  */
-
+  //assigns the amount of rows for a textarea
   input.rows = Math.round(input.scrollHeight/18);
-  console.log(input.rows);
 
 }
