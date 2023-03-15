@@ -178,9 +178,9 @@ function chargeTodos() {
 }
 
 function changeLines(input){
-  if(input.scrollHeight%18 == 0 || input.scrollHeight%18 == 1){
+  if(input.scrollHeight%18 == 0 || input.scrollHeight%18 <= 8){
     input.rows = input.scrollHeight/18;
-  }else if (input.scrollHeight%18 == 17){
+  }else if (input.scrollHeight%18 >= 9){
     input.rows = (input.scrollHeight/18) + 1;
   };
 }
