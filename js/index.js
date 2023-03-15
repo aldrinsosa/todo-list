@@ -50,9 +50,6 @@ function createTodo(todo, index) {
   <button type="submit" class="button deleteButton" id="delete${index}" ><i class="fa-solid fa-trash"></i></button>
   </div>`;
 
-  //<input type="text" readonly id="paragraph${id}" value ="${todo}" class="todo-text">
-  //<textarea readonly class="todo-text" id="paragraph${id}" cols="30" rows="1">${todo}</textarea>
-  
   //Gets the buttons
   const input = document.querySelector(`#paragraph${index}`);
   const editButton = document.querySelector(`#edit${index}`);
