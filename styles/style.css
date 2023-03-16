@@ -120,6 +120,10 @@ body::-webkit-scrollbar {
   resize: none;
 }
 
+.todo-text::placeholder { 
+  color: var(--blue);
+}
+
 .button {
   color: var(--blue);
   background: none;
@@ -150,6 +154,7 @@ body::-webkit-scrollbar {
 .todo-input {
   width: 100%;
   padding: 2rem;
+  resize: none;
 }
 
 .button-input {

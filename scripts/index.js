@@ -3,6 +3,7 @@ const todoInput = document.querySelector("#todo-input");
 const submitButton = document.querySelector("#button-input");
 const element = document.querySelector("#todo-section");
 const form = document.querySelector("#form");
+const cancelButton = document.querySelector('#cancelButton');
 
 //icons clases
 const deleteIconClasses = "fa-solid fa-trash";
@@ -10,12 +11,10 @@ const editIconClasses = "fa-solid fa-pen";
 const confirmIconClasses = "fa-solid fa-circle-check";
 const cancelIconClasses = "fa-solid fa-circle-xmark";
 
-//charges the todos and listen for submits
+//charges the todos from the local storage
 window.onload = chargeTodos();
-submitButton.addEventListener("click", getData);
-form.addEventListener("submit", getData);
 
-//fix the size of the todos error
+//fix the size
 setTimeout(() => {
   //iterates every div and assigns its corresponding size
   let divs = document.querySelectorAll('.todo-div') 
@@ -25,9 +24,40 @@ setTimeout(() => {
   });
 }, 100);
 
+submitButton.addEventListener("click", getData);
+
+//checks if the todo is submited 
+todoInput.addEventListener("keydown", (e) => {
+  if(e.shiftKey){
+  } 
+  //if just enter is pressed save the changes
+  else if(e.key == "Enter"){
+    getData(e)
+  }
+  changeLines(todoInput);
+}); 
+
+//shows the cancel button if there is text in the textarea and hide it if is empty
+todoInput.addEventListener("keyup", () => {
+  if (todoInput.value == ""){
+    cancelButton.setAttribute("hidden", true);
+  } else {
+    cancelButton.removeAttribute("hidden");
+  }
+  changeLines(todoInput);
+}); 
+
+cancelButton.addEventListener("click", () => {
+  //empties the text area, resizes and hides it 
+  todoInput.value = "";
+  todoInput.focus();
+  todoInput.rows = "1";
+  cancelButton.setAttribute("hidden", true);
+} )
+
 function getData(e) {
   e.preventDefault();
-
+  cancelButton.setAttribute("hidden", true);
   //gets the input from the textbox
   const todo = todoInput.value;
 
@@ -44,9 +74,10 @@ function getData(e) {
       //creates the todo
       createTodo(index,todo);
 
-      //empties the input and focuses it
+      //empties the input, focuses it and returns it to the normal size
       todoInput.value = "";
       todoInput.focus();
+      todoInput.rows = 1;
   }
 }
 
@@ -195,6 +226,7 @@ function cancelEdit(index, deleteIcon){
   editIcon.className = editIconClasses;
   deleteIcon.className = deleteIconClasses;
 
+  todoInput.focus();
 }
 
 function deleteTodo(index) {
@@ -206,6 +238,8 @@ function deleteTodo(index) {
 
   //removes the todo in the localstorage
   localStorage.removeItem(index);
+
+  todoInput.focus();
 }
 
 //creates the todos in the localstorage

@@ -30,18 +30,20 @@
 
     <main class="main">
       <section class="todo-section" id="todo-section"></section>
-      <form action="#" class="form" id="form">
-        <label for="todo">
-          <input
+      <div class="form" id="form">
+        <div class="todo-div">
+          <textarea
             autocomplete="off"
             type="text"
             id="todo-input"
             name="todo"
-            class="form-input todo-input"
+            class="todo-text"
             placeholder="Todo"
             autofocus
-          />
-        </label>
+            rows="1"
+          ></textarea>
+          <button hidden type="submit" id="cancelButton"class="button deleteButton"><i class="fa-solid fa-circle-xmark"></i></button>
+        </div>
         <label for="button">
           <input
             type="button"
@@ -51,7 +53,7 @@
             class="form-input button-input"
           />
         </label>
-      </form>
+      </div>
     </main>
     <script src="./scripts/index.js"></script>
     <script src="./scripts/theme.js"></script>
