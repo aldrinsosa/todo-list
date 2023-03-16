@@ -225,8 +225,6 @@ function cancelEdit(index, deleteIcon){
   //changes the icons
   editIcon.className = editIconClasses;
   deleteIcon.className = deleteIconClasses;
-
-  todoInput.focus();
 }
 
 function deleteTodo(index) {
@@ -238,8 +236,6 @@ function deleteTodo(index) {
 
   //removes the todo in the localstorage
   localStorage.removeItem(index);
-
-  todoInput.focus();
 }
 
 //creates the todos in the localstorage
